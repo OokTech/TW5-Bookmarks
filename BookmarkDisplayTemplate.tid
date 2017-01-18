@@ -1,0 +1,4 @@
+caption: Bookmark Display Template
+title: $:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate
+
+<a href={{!!url}} target="_blank"><$view field=title/></a> - {{!!note}} (<$link to={{!!title}}>Open Tiddler</$link>)<br>

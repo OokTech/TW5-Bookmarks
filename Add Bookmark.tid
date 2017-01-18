@@ -1,0 +1,77 @@
+caption: Add Bookmark
+title: $:/plugins/inmysocks/Bookmarks/Add Bookmark
+
+\define thisTagSelect()
+<$select
+    tiddler='$:/state/Bookmarks'
+    field='selected_tag'
+>
+    <$list
+        filter='[[$:/data/Bookmarks/BookmarkTags]indexes[]regexp:[(?i)$(tagSearch)$]]'
+    >
+        <option
+            value=<<currentTiddler>>
+        >
+            <$view
+                field='title'
+            />
+        </option>
+    </$list>
+</$select>
+\end
+
+<$list
+    filter='[[$:/settings/plugins/Bookmarks]get[tag_used]][[Bookmark]]+[limit[1]]'
+    variable=DefaultTag
+>
+
+    URL:
+    <$edit-text
+        tiddler='$:/temp/Bookmarks/NewBookmark'
+        field=url
+        class='tc-edit-texteditor'
+    />
+    Name:
+    <$edit-text
+        tiddler='$:/temp/Bookmarks/NewBookmark'
+        field=name
+        class='tc-edit-texteditor'
+    />
+    Note:
+    <$edit-text
+        tiddler='$:/temp/Bookmarks/NewBookmark'
+        field=note
+        class='tc-edit-texteditor'
+    />
+
+    Tags (it will always be tagged with <<DefaultTag>> by default):
+    <br>
+    <$tiddler
+        tiddler='$:/temp/Bookmarks/NewBookmark'
+    >
+        {{||$:/plugins/inmysocks/Bookmarks/BookmarksAddTag}}
+    </$tiddler>
+
+    <$button>Add Bookmark
+        <$fieldmangler
+            tiddler='$:/temp/Bookmarks/NewBookmark'
+        >
+            <$action-sendmessage
+                $message='tm-add-tag'
+                $param=<<DefaultTag>>
+            />
+        </$fieldmangler>
+        <$action-setfield
+            $tiddler='$:/temp/Bookmarks/NewBookmark'
+            $field='title'
+            $value={{$:/temp/Bookmarks/NewBookmark!!name}}
+        />
+        <$action-setfield
+            $tiddler='$:/temp/Bookmarks/NewBookmark'
+            url=''
+            name=''
+            note=''
+            tags=''
+        />
+    </$button>
+</$list>

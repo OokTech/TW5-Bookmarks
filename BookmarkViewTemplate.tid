@@ -1,0 +1,39 @@
+title: $:/plugins/inmysocks/Bookmarks/BookmarkViewTemplate
+tags: $:/tags/ViewTemplate
+
+<$list
+    filter='[[$:/settings/plugins/Bookmarks]get[tag_used]][[Bookmark]]+[limit[1]]'
+    variable=DefaultTag
+>
+    <$list
+        filter='[is[current]tag<DefaultTag>]'
+    >
+        <table
+            style='width:100%'
+        >
+            <tr>
+                <th>
+                    URL
+                </th>
+                <th>
+                    Note
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <a
+                        href={{!!url}}
+                        target="_blank"
+                    >
+                        <$view
+                            field=title
+                        />
+                    </a>
+                </td>
+                <td>
+                    {{!!note}}
+                </td>
+            </tr>
+        </table>
+    </$list>
+</$list>

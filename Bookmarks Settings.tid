@@ -1,0 +1,47 @@
+caption: Settings
+edit_tag_list: TiddlyWiki Plugins
+title: $:/plugins/inmysocks/Bookmarks/Bookmarks Settings
+
+\define thisRemoveTag()
+Select Tag:
+<$select
+    tiddler='$:/plugins/inmysocks/Bookmarks/Bookmarks Settings'
+    field='edit_tag_list'
+>
+    <$list
+        filter='[[$:/data/Bookmarks/BookmarkTags]indexes[]]'
+    >
+        <option
+            value=<<currentTiddler>>
+        >
+            <$view
+                field='title'
+            />
+        </option>
+    </$list>
+</$select>
+<$button
+    set='$:/data/Bookmarks/BookmarkTags##$(TagToRemove)$'
+>
+    Remove Tag
+</$button>
+\end
+
+This removes tags from the list of tags used by bookmarks
+
+<$set
+    name=TagToRemove
+    value={{$:/plugins/inmysocks/Bookmarks/Bookmarks Settings!!edit_tag_list}}
+>
+    <<thisRemoveTag>>
+</$set>
+
+You can use this to change the default tag added to your bookmarks. Note that changing this will make it so your existing bookmarks don't show up unless they also have this tag.
+
+Base Tag:
+<$edit-text
+    tiddler='$:/settings/plugins/Bookmarks'
+    field='tag_used'
+    placeholder=Bookmarks
+    default=Bookmarks
+/>

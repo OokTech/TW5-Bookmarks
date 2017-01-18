@@ -1,0 +1,205 @@
+caption: Bookmarks Sorted by Tags
+title: $:/plugins/inmysocks/Bookmarks/Bookmarks by Tags
+
+\define thisBookmarksListByTag()
+<!--Tag(s) selected-->
+<$reveal
+    type='nomatch'
+    state='$:/state/Bookmarks/BookmarksByTags'
+    text=''
+>
+    <$set
+        name=searchSelection
+        value={{$:/state/Bookmarks/BookmarksByTags}}
+    >
+        <$set
+            name=searchSelection2
+            value={{$:/state/Bookmarks/BookmarksByTags2}}
+        >
+            <$set
+                name=searchSelection3
+                value={{$:/state/Bookmarks/BookmarksByTags3}}
+            >
+                <$list
+                    filter='[[$:/data/Bookmarks/BookmarkTags]indexes[]<searchSelection>]'
+                >
+                    <$transclude
+                        tiddler="$:/core/ui/TagTemplate"
+                        mode="inline"
+                    />
+
+                    <ul>
+
+                        <!--One tag selected-->
+                        <$reveal
+                            type='match'
+                            state='$:/state/Bookmarks/BookmarksByTags2'
+                            text=''
+                        >
+                            <$list
+                                filter='[tag<searchSelection>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]'
+                                template='$:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate'
+                            >
+                            </$list>
+                        </$reveal>
+                        <!--End one tag selected-->
+
+                        <!--Two tags selected-->
+                        <$reveal
+                            type='nomatch'
+                            state='$:/state/Bookmarks/BookmarksByTags2'
+                            text=''
+                        >
+                            <$reveal
+                                type='match'
+                                state='$:/state/Bookmarks/BookmarksByTags3'
+                                text=''
+                            >
+                                <$list
+                                    filter='[tag<searchSelection>tag<searchSelection2>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]'
+                                    template='$:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate'
+                                >
+                                </$list>
+                            </$reveal>
+                        </$reveal>
+                        <!--End two tags selected-->
+
+                        <!--Three tags selected-->
+                        <$reveal
+                            type='nomatch'
+                            state='$:/state/Bookmarks/BookmarksByTags3'
+                            text=''
+                        >
+                            <$list
+                                filter='[tag<searchSelection>tag<searchSelection2>tag<searchSelection3>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]'
+                                template='$:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate'
+                            >
+                            </$list>
+                        </$reveal>
+                        <!--End three tags selected-->
+                    </ul>
+                </$list>
+            </$set>
+        </$set>
+    </$set>
+</$reveal>
+<!--End tag(s) selected-->
+
+<!--No tag selected-->
+<$reveal
+    type='match'
+    state='$:/state/Bookmarks/BookmarksByTags'
+    text=''
+>
+    <$set
+        name=searchSelection
+        value={{$:/state/Bookmarks/BookmarksByTags}}
+    >
+        <$list
+            filter='[[$:/data/Bookmarks/BookmarkTags]indexes[]sort[title]]'
+        >
+            <$transclude
+                tiddler="$:/core/ui/TagTemplate"
+                mode="inline"
+            />
+            <ul>
+                <$list
+                    filter='[tag<currentTiddler>tag<DefaultTag>sort[title]]'
+                    template='$:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate'
+                >
+                </$list>
+            </ul>
+        </$list>
+    </$set>
+</$reveal>
+<!--End no tag selected-->
+\end
+
+<$list
+    filter='[[$:/settings/plugins/Bookmarks]get[tag_used]][[Bookmark]]+[limit[1]]'
+    variable=DefaultTag
+>
+    Select tag to see all bookmarks with that tag:
+    <br>
+    <$select
+        tiddler='$:/state/Bookmarks/BookmarksByTags'
+    >
+        <option
+            value=''
+        >
+            (Show All Tags)
+        </option>
+        <$list
+            filter='[[$:/data/Bookmarks/BookmarkTags]indexes[]sort[title]]'
+        >
+            <option
+                value=<<currentTiddler>>
+            >
+                <$view
+                    field='title'
+                />
+            </option>
+        </$list>
+    </$select>
+    <$reveal
+        state='$:/state/Bookmarks/BookmarksByTags'
+        type='nomatch'
+        text=''
+    >
+        <$select
+            tiddler='$:/state/Bookmarks/BookmarksByTags2'
+        >
+            <option
+                value=''
+            >
+                (All Results)
+            </option>
+            <$list
+                filter='[tag<DefaultTag>tag{$:/state/Bookmarks/BookmarksByTags}tags[]sort[title]]-[<DefaultTag>]-[{$:/state/Bookmarks/BookmarksByTags}]'
+            >
+                <option
+                    value=<<currentTiddler>>
+                >
+                    <$view
+                        field='title'
+                    />
+                </option>
+            </$list>
+        </$select>
+        <$reveal
+            state='$:/state/Bookmarks/BookmarksByTags2'
+            type='nomatch'
+            text=''
+        >
+            <$select
+                tiddler='$:/state/Bookmarks/BookmarksByTags3'
+            >
+                <option
+                    value=''
+                >
+                    (All Results)
+                </option>
+                <$list
+                    filter='[tag<DefaultTag>tag{$:/state/Bookmarks/BookmarksByTags}tag{$:/state/Bookmarks/BookmarksByTags2}tags[]sort[title]]-[<DefaultTag>]-[{$:/state/Bookmarks/BookmarksByTags}]-[{$:/state/Bookmarks/BookmarksByTags2}]'
+                >
+                    <option
+                        value=<<currentTiddler>>
+                    >
+                        <$view
+                            field='title'
+                        />
+                    </option>
+                </$list>
+            </$select>
+        </$reveal>
+    </$reveal>
+
+    Search: <$edit-text tiddler='$:/state/Bookmarks/Search' field='search'/>
+    <br>
+    <$set
+        name='SearchString'
+        value={{$:/state/Bookmarks/Search!!search}}
+    >
+        <<thisBookmarksListByTag>>
+    </$set>
+</$list>

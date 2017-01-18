@@ -1,0 +1,37 @@
+blurb:  Bookmarks
+caption: Bookmarks
+tags: Dashboard
+title: $:/plugins/inmysocks/Bookmarks/Bookmarks
+
+<$reveal
+    type='match'
+    state='$:/state/reveal/Bookmarks/AddBookmark'
+    text='show'
+>
+    <$button
+        set='$:/state/reveal/Bookmarks/AddBookmark'
+        setTo='hide'
+    >
+        Done
+    </$button>
+    <br>
+
+    <$transclude
+        tiddler='$:/plugins/inmysocks/Bookmarks/Add Bookmark'
+    />
+
+</$reveal>
+<$reveal
+    type='nomatch'
+    state='$:/state/reveal/Bookmarks/AddBookmark'
+    text='show'
+>
+    <$button
+        set='$:/state/reveal/Bookmarks/AddBookmark'
+        setTo='show'
+    >
+        New Bookmark
+    </$button>
+</$reveal>
+
+<<tabs "[[$:/plugins/inmysocks/Bookmarks/Bookmarks List]][[$:/plugins/inmysocks/Bookmarks/Bookmarks by Tags]][[$:/plugins/inmysocks/Bookmarks/Bookmarks Settings]]">>
