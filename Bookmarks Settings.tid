@@ -1,11 +1,11 @@
 caption: Settings
 edit_tag_list: TiddlyWiki Plugins
-title: $:/plugins/inmysocks/Bookmarks/Bookmarks Settings
+title: $:/plugins/OokTech/Bookmarks/Bookmarks Settings
 
 \define thisRemoveTag()
 Select Tag:
 <$select
-    tiddler='$:/plugins/inmysocks/Bookmarks/Bookmarks Settings'
+    tiddler='$:/plugins/OokTech/Bookmarks/Bookmarks Settings'
     field='edit_tag_list'
 >
     <$list
@@ -31,7 +31,7 @@ This removes tags from the list of tags used by bookmarks
 
 <$set
     name=TagToRemove
-    value={{$:/plugins/inmysocks/Bookmarks/Bookmarks Settings!!edit_tag_list}}
+    value={{$:/plugins/OokTech/Bookmarks/Bookmarks Settings!!edit_tag_list}}
 >
     <<thisRemoveTag>>
 </$set>

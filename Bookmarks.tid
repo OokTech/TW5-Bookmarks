@@ -1,7 +1,7 @@
 blurb:  Bookmarks
 caption: Bookmarks
 tags: Dashboard
-title: $:/plugins/inmysocks/Bookmarks/Bookmarks
+title: $:/plugins/OokTech/Bookmarks/Bookmarks
 
 <$reveal
     type='match'
@@ -17,7 +17,7 @@ title: $:/plugins/inmysocks/Bookmarks/Bookmarks
     <br>
 
     <$transclude
-        tiddler='$:/plugins/inmysocks/Bookmarks/Add Bookmark'
+        tiddler='$:/plugins/OokTech/Bookmarks/Add Bookmark'
     />
 
 </$reveal>
@@ -34,4 +34,4 @@ title: $:/plugins/inmysocks/Bookmarks/Bookmarks
     </$button>
 </$reveal>
 
-<<tabs "[[$:/plugins/inmysocks/Bookmarks/Bookmarks List]][[$:/plugins/inmysocks/Bookmarks/Bookmarks by Tags]][[$:/plugins/inmysocks/Bookmarks/Bookmarks Settings]]">>
+<<tabs "[[$:/plugins/OokTech/Bookmarks/Bookmarks List]][[$:/plugins/OokTech/Bookmarks/Bookmarks by Tags]][[$:/plugins/OokTech/Bookmarks/Bookmarks Settings]]">>

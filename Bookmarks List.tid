@@ -1,10 +1,10 @@
 caption: Bookmarks List
-title: $:/plugins/inmysocks/Bookmarks/Bookmarks List
+title: $:/plugins/OokTech/Bookmarks/Bookmarks List
 
 \define thisBookmarkList()
 <$list
     filter='[tag[Bookmark]regexp[(?i)$(searchString)$]sort[title]]-[[$:/temp/Bookmarks/NewBookmark]]'
-    template='$:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate'
+    template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
     >
 </$list>
 \end

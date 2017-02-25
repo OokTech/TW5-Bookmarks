@@ -1,5 +1,5 @@
 caption: Bookmarks Sorted by Tags
-title: $:/plugins/inmysocks/Bookmarks/Bookmarks by Tags
+title: $:/plugins/OokTech/Bookmarks/Bookmarks by Tags
 
 \define thisBookmarksListByTag()
 <!--Tag(s) selected-->
@@ -38,7 +38,7 @@ title: $:/plugins/inmysocks/Bookmarks/Bookmarks by Tags
                         >
                             <$list
                                 filter='[tag<searchSelection>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]'
-                                template='$:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate'
+                                template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
                             >
                             </$list>
                         </$reveal>
@@ -57,7 +57,7 @@ title: $:/plugins/inmysocks/Bookmarks/Bookmarks by Tags
                             >
                                 <$list
                                     filter='[tag<searchSelection>tag<searchSelection2>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]'
-                                    template='$:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate'
+                                    template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
                                 >
                                 </$list>
                             </$reveal>
@@ -72,7 +72,7 @@ title: $:/plugins/inmysocks/Bookmarks/Bookmarks by Tags
                         >
                             <$list
                                 filter='[tag<searchSelection>tag<searchSelection2>tag<searchSelection3>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]'
-                                template='$:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate'
+                                template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
                             >
                             </$list>
                         </$reveal>
@@ -105,7 +105,7 @@ title: $:/plugins/inmysocks/Bookmarks/Bookmarks by Tags
             <ul>
                 <$list
                     filter='[tag<currentTiddler>tag<DefaultTag>sort[title]]'
-                    template='$:/plugins/inmysocks/Bookmarks/BookmarkDisplayTemplate'
+                    template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
                 >
                 </$list>
             </ul>

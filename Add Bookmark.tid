@@ -1,5 +1,5 @@
 caption: Add Bookmark
-title: $:/plugins/inmysocks/Bookmarks/Add Bookmark
+title: $:/plugins/OokTech/Bookmarks/Add Bookmark
 
 \define thisTagSelect()
 <$select
@@ -49,7 +49,7 @@ title: $:/plugins/inmysocks/Bookmarks/Add Bookmark
     <$tiddler
         tiddler='$:/temp/Bookmarks/NewBookmark'
     >
-        {{||$:/plugins/inmysocks/Bookmarks/BookmarksAddTag}}
+        {{||$:/plugins/OokTech/Bookmarks/BookmarksAddTag}}
     </$tiddler>
 
     <$button>Add Bookmark

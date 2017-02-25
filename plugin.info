@@ -1,9 +1,9 @@
 {
-	"title": "$:/plugins/inmysocks/Ref",
-	"description": "A reference and citation tool for tiddlywiki",
+	"title": "$:/plugins/OokTech/Bookmarks",
+	"description": "A searchable bookmarks library for tiddlywiki",
 	"author": "inmysocks",
-	"version": "0.0.1",
+	"version": "0.0.8",
 	"core-version": ">=5.1.13",
-	"source": "",
+	"source": "https://github.com/OokTech/TW5-Bookmarks",
 	"plugin-type": "plugin"
 }
