@@ -8,80 +8,71 @@ title: $:/plugins/OokTech/Bookmarks/Bookmarks by Tags
     state='$:/state/Bookmarks/BookmarksByTags'
     text=''
 >
-    <$set
-        name=searchSelection
-        value={{$:/state/Bookmarks/BookmarksByTags}}
+    <$vars
+        searchSelection={{$:/state/Bookmarks/BookmarksByTags}}
+        searchSelection2={{$:/state/Bookmarks/BookmarksByTags2}}
+        searchSelection3={{$:/state/Bookmarks/BookmarksByTags3}}
     >
-        <$set
-            name=searchSelection2
-            value={{$:/state/Bookmarks/BookmarksByTags2}}
+        <$list
+            filter='[[$:/data/Bookmarks/BookmarkTags]indexes[]<searchSelection>]'
         >
-            <$set
-                name=searchSelection3
-                value={{$:/state/Bookmarks/BookmarksByTags3}}
-            >
-                <$list
-                    filter='[[$:/data/Bookmarks/BookmarkTags]indexes[]<searchSelection>]'
+            <$transclude
+                tiddler="$:/core/ui/TagTemplate"
+                mode="inline"
+            />
+
+            <ul>
+
+                <!--One tag selected-->
+                <$reveal
+                    type='match'
+                    state='$:/state/Bookmarks/BookmarksByTags2'
+                    text=''
                 >
-                    <$transclude
-                        tiddler="$:/core/ui/TagTemplate"
-                        mode="inline"
-                    />
+                    <$list
+                        filter="""[tag<searchSelection>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]"""
+                        template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
+                    >
+                    </$list>
+                </$reveal>
+                <!--End one tag selected-->
 
-                    <ul>
-
-                        <!--One tag selected-->
-                        <$reveal
-                            type='match'
-                            state='$:/state/Bookmarks/BookmarksByTags2'
-                            text=''
+                <!--Two tags selected-->
+                <$reveal
+                    type='nomatch'
+                    state='$:/state/Bookmarks/BookmarksByTags2'
+                    text=''
+                >
+                    <$reveal
+                        type='match'
+                        state='$:/state/Bookmarks/BookmarksByTags3'
+                        text=''
+                    >
+                        <$list
+                            filter="""[tag<searchSelection>tag<searchSelection2>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]"""
+                            template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
                         >
-                            <$list
-                                filter='[tag<searchSelection>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]'
-                                template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
-                            >
-                            </$list>
-                        </$reveal>
-                        <!--End one tag selected-->
+                        </$list>
+                    </$reveal>
+                </$reveal>
+                <!--End two tags selected-->
 
-                        <!--Two tags selected-->
-                        <$reveal
-                            type='nomatch'
-                            state='$:/state/Bookmarks/BookmarksByTags2'
-                            text=''
-                        >
-                            <$reveal
-                                type='match'
-                                state='$:/state/Bookmarks/BookmarksByTags3'
-                                text=''
-                            >
-                                <$list
-                                    filter='[tag<searchSelection>tag<searchSelection2>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]'
-                                    template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
-                                >
-                                </$list>
-                            </$reveal>
-                        </$reveal>
-                        <!--End two tags selected-->
-
-                        <!--Three tags selected-->
-                        <$reveal
-                            type='nomatch'
-                            state='$:/state/Bookmarks/BookmarksByTags3'
-                            text=''
-                        >
-                            <$list
-                                filter='[tag<searchSelection>tag<searchSelection2>tag<searchSelection3>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]'
-                                template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
-                            >
-                            </$list>
-                        </$reveal>
-                        <!--End three tags selected-->
-                    </ul>
-                </$list>
-            </$set>
-        </$set>
-    </$set>
+                <!--Three tags selected-->
+                <$reveal
+                    type='nomatch'
+                    state='$:/state/Bookmarks/BookmarksByTags3'
+                    text=''
+                >
+                    <$list
+                        filter="""[tag<searchSelection>tag<searchSelection2>tag<searchSelection3>tag<DefaultTag>sort[title]regexp[(?i)$(SearchString)$]]"""
+                        template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
+                    >
+                    </$list>
+                </$reveal>
+                <!--End three tags selected-->
+            </ul>
+        </$list>
+    </$vars>
 </$reveal>
 <!--End tag(s) selected-->
 

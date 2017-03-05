@@ -5,7 +5,7 @@ title: $:/plugins/OokTech/Bookmarks/Bookmarks List
 <$list
     filter='[tag[Bookmark]regexp[(?i)$(searchString)$]sort[title]]-[[$:/temp/Bookmarks/NewBookmark]]'
     template='$:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate'
-    >
+>
 </$list>
 \end
 
