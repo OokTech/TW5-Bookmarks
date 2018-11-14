@@ -3,13 +3,12 @@ title: $:/plugins/OokTech/Bookmarks/BookmarkDisplayTemplate
 
 <a
     href={{!!url}}
-    target="_blank"
+    target="_blank" class="tc-tiddlylink-external"
 >
     <$view
         field=title
-    />
-</a>
-- {{!!note}} (<$link
+    /></a>
+ - {{!!note}} (<$link
     to={{!!title}}
 >
     Open Tiddler
